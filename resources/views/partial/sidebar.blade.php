@@ -2,13 +2,15 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
+    @if(Auth()->user()->user_type=='admin')
     <li class="nav-item">
         <a class="nav-link " href="{{route('hr.create')}}">
           <i class="bi bi-grid"></i>
           <span>Hr Manage</span>
         </a>
-      </li>
+      </li>    
+        @endif
+ 
       <li class="nav-item">
         <a class="nav-link " href="{{route('appointment.create')}}">
           <i class="bi bi-grid"></i>

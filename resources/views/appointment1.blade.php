@@ -103,19 +103,15 @@ $(document).ready(function() {
                 $('.appointment-buttons').empty();
                 response.forEach(function(appointment) {
                     var button = $('<button class="custom-button appointment-button" data-id="' + appointment.id + '">').text(appointment.schedule_start + ' - ' + appointment.schedule_end);
-                    if (appointment.status === 0) {
-                        button.prop('disabled', true); // Disable the button
-                    }
                     $('.appointment-buttons').append(button);
                 });
-                $('.appointment-buttons').show(); // Show the buttons after loading
+                $('.appointment-buttons').show(); 
             },
             error: function(xhr, status, error) {
                 console.error(error);
             }
         });
     });
-
 
     $(document).on('click', '.appointment-button', function() {
     var dataId = $(this).data('id');
@@ -140,7 +136,7 @@ $('#confirmButton').on('click', function() {
             // Handle success response
             $('#confirmationForm').hide();
             // Assuming you want to update the button text
-            $('.appointment-button[data-id="' + dataId + '"]').text('Booked');
+            $('.appointment-button[data-id="' + dataId + '"]').text('booked');
         },
         error: function(xhr, status, error) {
             // Handle error
@@ -154,7 +150,9 @@ $('#cancelButton').on('click', function() {
 });
 
 
-  
+    $('#cancelButton').on('click', function() {
+        $('#confirmationForm').hide();
+    });
 });
 </script>
 </body>

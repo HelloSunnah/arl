@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/appointment', [ApiController::class, 'index']);
+Route::put('/update-status/{id}', [ApiController::class, 'updateStatus']);
+Route::get('/appointments', [ApiController::class, 'getAppointmentsForDate']);
+
+

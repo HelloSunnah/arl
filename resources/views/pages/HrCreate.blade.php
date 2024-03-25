@@ -16,7 +16,7 @@
         <label class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Name" name="name">
+            <input type="text" class="form-control"  required placeholder="Name" name="name">
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <label class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email" name="email">
+            <input type="email" class="form-control" required placeholder="Email" name="email">
           </div>
         </div>
       </div>   
@@ -32,19 +32,17 @@
         <label class="col-sm-2 col-form-label">Phone</label>
         <div class="col-sm-10">
           <div class="input-group mb-3">
-            <input type="number" class="form-control" placeholder="Phone" name="phone">
+            <input type="number" class="form-control"  required placeholder="Phone" name="phone">
           </div>
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-
     </form>
   </div>
 </div>
 </div>
 <div class="col-2"></div>
 </div>
-
 
 <div class="div"></div>
 <table class="table">
