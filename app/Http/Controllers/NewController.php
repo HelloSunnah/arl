@@ -113,4 +113,14 @@ class NewController extends Controller
             return redirect()->route('appointment.create');
         }
         
-}}
+}
+    public function appointment_edit_post($id){
+      $schedule=Schedule::find($id);
+
+      $schedule->update([
+        $schedule->hr_id
+         
+      ]);
+}
+
+}

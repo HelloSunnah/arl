@@ -59,13 +59,9 @@
     <td>{{$hr->name}}</td>
     <td>{{$hr->email}}</td>
     <td>{{$hr->phone}}</td>
-     
-    
     </tr> 
      @endforeach
   </tbody>
 </table>
 </body>
-
-
 @endsection

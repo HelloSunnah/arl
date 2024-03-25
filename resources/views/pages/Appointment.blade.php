@@ -52,6 +52,7 @@
       <th scope="col">Session Date</th>
       <th scope="col">Session Time</th>
       <th scope="col">Status</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -72,6 +73,46 @@
  <td><span class="badge text-bg-success"> Booked</span>
 </td>
 @endif
+<td>
+<a href="" class="badge text-bg-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a> 
+<a href="" class="badge text-bg-danger" >Delete</a> 
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+      <form method="post" action="{{route('appointment.edit.post',$hr->id)}}">
+    @csrf
+    <center><h4></h4></center>
+   
+  <div class="mb-3">
+    <label for="" class="form-label">Candidate Name</label>
+    <input type="text" name="candidate_name"  class="form-control" >
+  </div>   <div class="mb-3">
+    <label for="" class="form-label">Candidate Country</label>
+    <input type="text" name="candidate_country" class="form-control" >
+  </div>   
+  <div class="mb-3">
+    <label for="" class="form-label">Schedule Date</label>
+    <input type="date" name="schedule_date" required class="form-control" >
+  </div>  <div class="mb-3">
+    <label for="" class="form-label">Session Time Start</label>
+    <input type="time" name="schedule_start" required class="form-control" >
+  </div>  <div class="mb-3">
+    <label for="" class="form-label">Session Time End</label>
+    <input type="time" name="schedule_end" class="form-control" >
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+      </div>
+   
+    </div>
+  </div>
+</div>
+</td>
     </tr> 
      @endforeach
   </tbody>

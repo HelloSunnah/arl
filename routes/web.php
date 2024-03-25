@@ -27,6 +27,8 @@ Route::post('/hr/create/post', [NewController::class, 'hr_create_post'])->name('
 
 Route::get('/appointment/create', [NewController::class, 'appointment_create'])->name('appointment.create');
 Route::post('/appointment/create/post', [NewController::class, 'appointment_create_post'])->name('appointment.create.post');
+Route::put('/appointment/edit/post', [NewController::class, 'appointment_edit_post'])->name('appointment.edit.post');
+
 
 Auth::routes();
 
