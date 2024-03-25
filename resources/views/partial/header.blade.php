@@ -4,7 +4,7 @@
   <div class="d-flex align-items-center justify-content-between">
     <a href="" class="logo d-flex align-items-center">
       <img src="assets/img/logo.png" alt="">
-      <span class="d-none d-lg-block">Nava Ratno</span>
+      <span class="d-none d-lg-block">ARL</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div><!-- End Logo -->
@@ -49,10 +49,11 @@
 
 
           <li>
-            <a class="dropdown-item">
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
               {{ __('Logout') }}
             </a>
-            <form id="logout-form" action="" method="POST" class="d-none">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
               @csrf
             </form>
 

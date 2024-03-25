@@ -6,21 +6,13 @@ use App\Models\Hr;
 use Carbon\Carbon;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class NewController extends Controller
 {
     public function appointment(){
-       
-        
         {
-            // Fetch appointments for each HR and group them
-            $appointmentsByHR = Schedule::whereDate('schedule_date', Carbon::today())
-                                ->orderBy('hr_name')
-                                ->get()
-                                ->groupBy('hr_name');
-    
-            $appointments = Schedule::all();
+            $appointments = Schedule::whereDate('schedule_date', Carbon::today())
+                                ->get();
             return view('appointment1', ['appointments' => $appointments]);
 
         }}
@@ -35,18 +27,20 @@ class NewController extends Controller
         
 
     }
-    public function updateStatus(Request $request){
+    public function updateStatus(Request $request, $id)
+    {
+        $appointment = Schedule::find($id);
+        if (!$appointment) {
+            return response()->json(['error' => 'Appointment not found'], 404);
+        }
 
-              $appointment = Schedule::findOrFail($request->appointment_id);
+        // Update appointment status or any other logic as needed
+        $appointment->status = 'updated';
+        $appointment->save();
 
-              // Update the status of the appointment (assuming 'status' is a column in your appointments table)
-              $appointment->status = 'Booked'; // Update status as needed
-              $appointment->save();
-      
-              // Return a success response
-              return response()->json(['message' => 'Appointment booked successfully']);
-          
-    }
+        return response()->json(['message' => 'Appointment status updated successfully']);
+    }   
+
     public function hr_create(){
         $hrs=Hr::all();
         return view('pages.HrCreate',compact('hrs'));
@@ -67,8 +61,9 @@ class NewController extends Controller
     }
 
     public function appointment_create(){
+        $appointment=Schedule::all();
         $hrs=Hr::all();
-        return view('pages.Appointment',compact('hrs'));
+        return view('pages.Appointment',compact('hrs','appointment'));
     }
 
 
