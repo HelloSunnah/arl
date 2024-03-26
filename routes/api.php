@@ -25,3 +25,4 @@ Route::get('/appointments', [ApiController::class, 'getAppointmentsForDate']);
 
 
 Route::get('/list/date', [ApiController::class, 'list_date']);
+Route::get('/list/time', [ApiController::class, 'list_time']);
