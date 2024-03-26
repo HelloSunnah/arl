@@ -1,28 +1,58 @@
 <?php
-namespace App\Traits;
-trait HttpResponse{
 
-    protected function success(string $message = "", $data = [], $code = 200)
+namespace App\Traits;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Request;
+
+
+trait HttpResponse
+{
+    /**
+     * Send Success response.
+     *
+     * @param string $message
+     * @param array|object $data
+     * @param int $status_code
+     *
+     * @return JsonResponse
+     */
+    protected function sendSuccess(string $message, array|object $data = [], int $status_code = 200): JsonResponse
     {
-        return response()->json([
-            "status"    =>  "Called API Successfully",
-            "status_code"   =>  $code,
-            "message"   =>  $message,
-            "data"      =>  $data
-        ], $code);
+        $response = [
+            "success" => true,
+            'message' => $message,
+            'api'     => [
+                'endpoint' => Request::url(),
+                'method'   => Request::method(),
+            ],
+            'data'    => $data,
+        ];
+
+        return response()->json($response, $status_code);
     }
 
-
-    protected function error(string $message = "", $data = [], $code = 400)
+    /**
+     * Send Error response.
+     *
+     * @param string $message
+     * @param array|object $data
+     * @param int $status_code
+     *
+     * @return JsonResponse
+     */
+    protected function sendError(string $message, array|object $data = [], int $status_code = 500): JsonResponse
     {
-        return response()->json([
-            "status"    =>  "Called API Successfully",
-            "status_code"   =>  $code,
-            "message"   =>  $message,
-            "data"      =>  $data
-        ], $code);
+        $response = [
+            "success" => false,
+            'message' => $message,
+            'api'     => [
+                'endpoint' => Request::url(),
+                'method'   => Request::method(),
+            ],
+            'data'    => $data,
+        ];
+
+        return response()->json($response, $status_code);
     }
 }
-
-
-?>

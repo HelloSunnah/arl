@@ -24,3 +24,4 @@ Route::put('/update-status/{id}', [ApiController::class, 'updateStatus']);
 Route::get('/appointments', [ApiController::class, 'getAppointmentsForDate']);
 
 
+Route::get('/list/date', [ApiController::class, 'list_date']);

@@ -12,6 +12,12 @@ use function PHPUnit\Framework\returnValue;
 
 class NewController extends Controller
 {
+
+
+
+
+
+    
     public function appointment(){
         {
             $appointments = Schedule::whereDate('schedule_date', Carbon::today())
@@ -40,6 +46,19 @@ class NewController extends Controller
         $appointment->save();
         return response()->json(['message' => 'Appointment status updated successfully']);
     }   
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function hr_create(){
    
@@ -111,8 +130,7 @@ class NewController extends Controller
             ]);
             toastr()->addSuccess('Schedule saved successfully.');
             return redirect()->route('appointment.create');
-        }
-        
+        }       
 }
     public function appointment_edit_post($id){
       $schedule=Schedule::find($id);
