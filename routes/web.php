@@ -23,7 +23,12 @@ Route::put('/update-status/{id}', [NewController::class, 'updateStatus']);
 
 
 Route::get('/hr/create', [NewController::class, 'hr_create'])->name('hr.create');
+
 Route::post('/hr/create/post', [NewController::class, 'hr_create_post'])->name('hr.create.post');
+
+Route::get('/country/create', [NewController::class, 'country_create'])->name('country.create');
+Route::post('/country/create/post', [NewController::class, 'country_create_post'])->name('country.create.post');
+
 
 Route::get('/appointment/create', [NewController::class, 'appointment_create'])->name('appointment.create');
 Route::post('/appointment/create/post', [NewController::class, 'appointment_create_post'])->name('appointment.create.post');

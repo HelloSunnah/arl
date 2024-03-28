@@ -102,7 +102,7 @@ $(document).ready(function() {
             success: function(response) {
                 $('.appointment-buttons').empty();
                 response.forEach(function(appointment) {
-                    var button = $('<button class="custom-button appointment-button" data-id="' + appointment.id + '">').text(appointment.schedule_start + ' - ' + appointment.schedule_end);
+                    var button = $('<button class="custom-button appointment-button" data-id="' + appointment.id + '">').text(appointment.schedule_start + ' - ' + appointment.candidate_name);
                     $('.appointment-buttons').append(button);
                 });
                 $('.appointment-buttons').show(); 

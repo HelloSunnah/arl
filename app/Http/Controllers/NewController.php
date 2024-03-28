@@ -5,18 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Hr;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Country;
 use App\Models\Schedule;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use App\Mail\ScheduleCreated;
+use Illuminate\Support\Facades\Mail;
 use function PHPUnit\Framework\returnValue;
 
 class NewController extends Controller
 {
-
-
-
-
-
     
     public function appointment(){
         {
@@ -47,24 +45,12 @@ class NewController extends Controller
         return response()->json(['message' => 'Appointment status updated successfully']);
     }   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function hr_create(){
    
         $hrs=Hr::all();
         return view('pages.HrCreate',compact('hrs'));
     }
+
 
     public function hr_create_post(Request $request)  {
        
@@ -76,6 +62,7 @@ class NewController extends Controller
         ]);
         User::create([
             'name'=>$request->name,
+            'user_type'=>'hr',
             'email'=>$request->email,
             'password'=>bcrypt('123456789'),
         ]);
@@ -89,8 +76,10 @@ class NewController extends Controller
 
         $appointment=Schedule::all();
         $hrs=Hr::all();
-        return view('pages.Appointment',compact('hrs','appointment'));
+         $country=Country::all();
+        return view('pages.Appointment',compact('hrs','appointment','country'));
     }
+
 
 
     public function appointment_create_post(Request $request)  {
@@ -111,6 +100,7 @@ class NewController extends Controller
              $existingSchedule = Schedule::where('hr_id', $hrId)
                 ->where('schedule_date', $scheduleDate)
                 ->where('schedule_start', $request->input('schedule_start'))
+                ->where('schedule_start', $request->input('schedule_start'))
                 ->where('schedule_end', $request->input('schedule_end'))
                 ->count();
         
@@ -120,18 +110,32 @@ class NewController extends Controller
             }
             $hr=Hr::where('id',$hrId)->pluck('name')->first();
         
-            Schedule::create([
-                'hr_id' => $hr,
+             $country_id=$request->input('candidate_country');
+              $candidate_country=Country::find($country_id);
+              $schedule_start = Carbon::createFromFormat('Y-m-d H:i', date('Y-m-d') . ' ' . $request->input('schedule_start'));
+
+              $candidate_time = $schedule_start->addHours($candidate_country->time_difference);
+              
+              $schedule =   Schedule::create([
+                'hr_id' => $hrId,
+                'hr_name' =>Auth()->user()->name,
                 'candidate_name' => $request->input('candidate_name'),
-                'candidate_country' => $request->input('candidate_country'),
+                'candidate_email' => $request->input('candidate_email'),
+                'candidate_phone' => $request->input('candidate_phone'),
+                'candidate_country' => $candidate_country->country_name,
+                'candidate_time' => $candidate_time->format('H:i'),
                 'schedule_date' => $scheduleDate,
-                'schedule_start' => $request->input('schedule_start'),
+                'schedule_start' =>  $request->input('schedule_start'),
                 'schedule_end' => $request->input('schedule_end'),
             ]);
+             Mail::to(  $schedule->candidate_email)->send(new ScheduleCreated($schedule));
+
             toastr()->addSuccess('Schedule saved successfully.');
             return redirect()->route('appointment.create');
         }       
+
 }
+
     public function appointment_edit_post($id){
       $schedule=Schedule::find($id);
 
@@ -141,4 +145,20 @@ class NewController extends Controller
       ]);
 }
 
+public function country_create(){
+    return view('pages.countryCreate');
+
+}
+public function country_create_post(Request $request){
+
+Country::create([
+    'country_name'=>$request->country_name,
+    'time_difference'=>$request->time_difference,
+    'type_difference'=>$request->type_difference,
+]);
+
+toastr()->addSuccess('Country Added Successfully');
+
+return back();
+}
 }

@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('hr_id')->nullable();
             $table->string('hr_name')->nullable();
             $table->string('candidate_name')->nullable();
+            $table->string('candidate_email')->nullable();
+            $table->string('candidate_phone')->nullable();
             $table->string('candidate_country')->nullable();
+            $table->string('candidate_time')->nullable();
             $table->string('status')->default(0);
             $table->string('schedule_date')->nullable();
             $table->string('schedule_start')->nullable();
