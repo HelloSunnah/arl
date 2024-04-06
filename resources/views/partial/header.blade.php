@@ -1,57 +1,36 @@
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
+<!DOCTYPE html>
+<html lang="en">
 
-  <div class="d-flex align-items-center justify-content-between">
-    <a href="" class="logo d-flex align-items-center">
-      <img src="assets/img/logo.png" alt="">
-      <span class="d-none d-lg-block">ARL</span>
-    </a>
-    <i class="bi bi-list toggle-sidebar-btn"></i>
-  </div>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <nav class="header-nav ms-auto">
-    <ul class="d-flex align-items-center">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-      <li class="nav-item d-block d-lg-none">
-        <a class="nav-link nav-icon search-bar-toggle " href="#">
-          <i class="bi bi-search"></i>
-        </a>
-      </li>
+    <!-- Favicons -->
+    <link href="{{url('assets/img/favicon.png')}}" rel="icon">
+    <link href="{{url('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{{url('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{url('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
+    <link href="{{url('assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
+    <link href="{{url('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{url('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- Template Main CSS File -->
+    <link href="{{url('assets/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
 
-      <li class="nav-item dropdown pe-3">
+  
+</head>
 
-        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2"></span>
-        </a>
-
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="">
-              <i class="bi bi-person"></i>
-              <span>Password Change</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li>
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
-            </form>
-
-          </li>
-
-        </ul>
-      </li>
-
-
-
-    </ul>
-  </nav>
-</header>
+<body>
