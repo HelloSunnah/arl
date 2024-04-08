@@ -126,6 +126,7 @@
                                 <th scope="col">Receipt</th>
                                 <th scope="col">status</th>
                                 <th>
+
                                     @if(Auth::user()->user_type == 'admin')
                                     Status Button
                                     @endif</th>
@@ -135,7 +136,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach($pay_reqeust as $index => $data)
+                            @foreach($pay_reqeust as $key => $data)
                             <tr>
                                 <td>{{$data->reference_id}}</td>
                                 <td>{{$data->description}}</td>
@@ -163,13 +164,70 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if($data->status==0)
+
                                     @if(Auth::user()->user_type == 'admin')
-                                    <a href="" class="btn btn-danger"> Cancel</a>
-                                    @endif @if(Auth::user()->user_type == 'admin')
-                                    <a href="" class="btn btn-success"> Approve</a>
+                                    <a href="" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{$key}}"> Cancel</a>
                                     @endif
+                                    @if(Auth::user()->user_type == 'admin')
+                                    <a href="" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal1{{$key}}"> Approve</a>
+                                    @endif
+                                    @else
+                                    <center>----</center> @endif
                                 </td>
                                 <td>{{$data->comment}}</td>
+                                <!-- Button trigger modal -->
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{$key}}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="{{ route('reason.post',$data->id) }}">
+                                                    @csrf
+                                                    <label>Reason </label>
+                                                    <textarea name="comment" id="" class="form-control" cols="30"
+                                                        rows="10" placeholder="Write The Reason"></textarea>
+                                            </div>
+
+                                            <button type="submit" style="margin-top: 10px;"
+                                                class="btn btn-success">Submit</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="exampleModal1{{$key}}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are You sure to Approved
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                    <a href="{{ route('approved.post',$data->id) }}" type="button" class="btn btn-primary">Save</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                             @endforeach
 
@@ -265,9 +323,9 @@
         </div>
     </div>
     <script>
-        function showData(index, a, b) {
-            console.log(index, a, b);
-        }
+    function showData(index, a, b) {
+        console.log(index, a, b);
+    }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>

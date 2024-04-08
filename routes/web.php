@@ -29,3 +29,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/user/create', [App\Http\Controllers\HomeController::class, 'user'])->name('user.create');
+Route::post('/reason/post/{id}', [App\Http\Controllers\HomeController::class, 'reason_post'])->name('reason.post');
+Route::get('/aproval/post/{id}', [App\Http\Controllers\HomeController::class, 'approval_post'])->name('approved.post');

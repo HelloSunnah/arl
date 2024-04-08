@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\PaymentRequest;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -37,5 +38,25 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'User Create successfully');
 
 
+    }
+    public function reason_post(Request $request,$id){
+        $reason=PaymentRequest::find($id);
+        
+        $reason->update(
+            [
+                'comment'=>$request->comment,
+                'status'=>2
+        ]);
+            return redirect()->back()->with('Error', 'Cancel  successfully');
+
+    }
+    public function approval_post($id){
+        $reason=PaymentRequest::find($id);
+        
+        $reason->update(
+            [
+                'status'=>1
+        ]);
+        return redirect()->back()->with('success', 'approved  successfully');
     }
 }
