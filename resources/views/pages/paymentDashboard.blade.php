@@ -2,7 +2,7 @@
 @section('content')
 
 <body>
-    <style>
+    <!-- <style>
         .text-danger strong {
             color: #9f181c;
         }
@@ -106,10 +106,10 @@
         #container {
             background-color: #dcdcdc;
         }
-    </style>
+    </style> -->
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-1"></div>
+        <div class="col-10">
             <div class="card">
                 <div class="card-body">
                     <center>
@@ -125,6 +125,10 @@
                                 <th scope="col">Approved By</th>
                                 <th scope="col">Receipt</th>
                                 <th scope="col">status</th>
+                                <th>
+                                    @if(Auth::user()->user_type == 'admin')
+                                    Status Button
+                                    @endif</th>
                                 <th scope="col">Remarks</th>
 
                             </tr>
@@ -139,20 +143,10 @@
                                 <td>sunnah</td>
                                 <td>{{$data->signature}}</td>
                                 <td>
-                                    <a href="#" onclick="showData('{{ $data->reference_id }}', '{{ $data->description }}', '{{ $data->amount }}')"  data-bs-target="#receiptModal">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </a>
                                 </td>
-                                <!-- <td>
-                                    <a href="" onclick="showData(json_encode($index)); return false;">Show Data</a>
-                                </td> -->
-
                                 <td>
-
                                     @if($data->status==0)
                                     <a href="" class="badge text-bg-primary">
-
-
                                         pending
                                     </a>
                                     @endif
@@ -167,10 +161,15 @@
                                         Reject
                                     </a>
                                     @endif
-
+                                </td>
+                                <td>
+                                    @if(Auth::user()->user_type == 'admin')
+                                    <a href="" class="btn btn-danger"> Cancel</a>
+                                    @endif @if(Auth::user()->user_type == 'admin')
+                                    <a href="" class="btn btn-success"> Approve</a>
+                                    @endif
                                 </td>
                                 <td>{{$data->comment}}</td>
-
                             </tr>
                             @endforeach
 
@@ -179,7 +178,7 @@
 
                 </div>
             </div>
-            <div class="col-2"></div>
+            <div class="col-1"></div>
         </div>
 
         <!-- Button trigger modal -->
@@ -259,7 +258,6 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-success">Approved</button>
                     </div>
                 </div>

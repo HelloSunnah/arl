@@ -3,6 +3,12 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
+      <a class="nav-link " href="{{route('payment.approved.permission')}}">
+          <i class="bi bi-grid"></i>
+          <span> Approved Permission</span>
+        </a>
+      </li>
+    <li class="nav-item">
         <a class="nav-link " href="{{route('payment.request')}}">
           <i class="bi bi-grid"></i>
           <span>Payment Request</span>
@@ -14,7 +20,7 @@
           <i class="bi bi-grid"></i>
           <span> Payment Dashboard</span>
         </a>
-      </li>
+      </li> 
   
     </ul>
   </aside>
