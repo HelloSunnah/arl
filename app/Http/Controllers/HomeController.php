@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\PaymentRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -55,7 +56,8 @@ class HomeController extends Controller
         
         $reason->update(
             [
-                'status'=>1
+                'status'=>1,
+                'approved_by'=>Auth::user()->id
         ]);
         return redirect()->back()->with('success', 'approved  successfully');
     }

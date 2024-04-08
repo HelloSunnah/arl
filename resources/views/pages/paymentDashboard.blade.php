@@ -141,9 +141,10 @@
                                 <td>{{$data->reference_id}}</td>
                                 <td>{{$data->description}}</td>
                                 <td>{{$data->amount}}</td>
-                                <td>sunnah</td>
+                                <td>{{$data->user->name}}
+</td>
                                 <td>{{$data->signature}}</td>
-                                <td>
+                                <td><i class="bi bi-eye-fill"></i>
                                 </td>
                                 <td>
                                     @if($data->status==0)
@@ -168,11 +169,11 @@
 
                                     @if(Auth::user()->user_type == 'admin')
                                     <a href="" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal{{$key}}"> Cancel</a>
+                                        data-bs-target="#exampleModal{{$key}}"> <i class="bi bi-x"></i></a>
                                     @endif
                                     @if(Auth::user()->user_type == 'admin')
                                     <a href="" class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal1{{$key}}"> Approve</a>
+                                        data-bs-target="#exampleModal1{{$key}}"> <i class="bi bi-check-all"></i></a>
                                     @endif
                                     @else
                                     <center>----</center> @endif
@@ -216,7 +217,7 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Are You sure to Approved
+                                                Are You sure to Approve
 
                                             </div>
                                             <div class="modal-footer">
