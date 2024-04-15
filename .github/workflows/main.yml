@@ -13,5 +13,5 @@ jobs:
       with:
         server: ababil.group
         username: root
-        password: '@@Bangladesh01##'
+        password: "@@Bangladesh01##"
         server-dir: /home/ababil/public_html/account.ababil.group/
