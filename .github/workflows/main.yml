@@ -1,7 +1,4 @@
-on: 
-  push:
-    branches:
-       -main
+on: push
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -14,7 +11,6 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ababil.group
-        username: account@ababil.group
+        server: ftp.ababil.group
+        username: account@account.ababil.group
         password: '@@Ababil01@@'
-        server-dir: /home/ababil/public_html/account.ababil.group/
