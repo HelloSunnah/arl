@@ -14,3 +14,4 @@ jobs:
         server: ftp.ababil.group
         username: account@account.ababil.group
         password: '@@Ababil01@@'
+        server-dir: /home/ababil/public_html/account.ababil.group/
